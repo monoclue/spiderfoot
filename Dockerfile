@@ -85,9 +85,11 @@ WORKDIR /home/spiderfoot
 EXPOSE 5001
 
 # Run the application
-CMD python -c 'from spiderfoot import SpiderFootDb; \
-db = SpiderFootDb({"__database": "/var/lib/spiderfoot/spiderfoot.db"}); \
-db.configSet({ \
-    "sfp_tool_cmseek:cmseekpath": "/tools/CMSeeK/cmseek.py", \
-    "sfp_tool_whatweb:whatweb_path": "/tools/WhatWeb/whatweb" \
-})' || true && ./sf.py -l 0.0.0.0:5001
+#CMD python -c 'from spiderfoot import SpiderFootDb; \
+#db = SpiderFootDb({"__database": "/var/lib/spiderfoot/spiderfoot.db"}); \
+#db.configSet({ \
+#    "sfp_tool_cmseek:cmseekpath": "/tools/CMSeeK/cmseek.py", \
+#    "sfp_tool_whatweb:whatweb_path": "/tools/WhatWeb/whatweb" \
+#})' || true && ./sf.py -l 0.0.0.0:5001
+
+SHELL ["/bin/bash", "-c"]
