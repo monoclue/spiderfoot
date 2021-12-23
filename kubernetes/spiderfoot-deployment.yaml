@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations: []
+  labels: []
+  name: spiderfoot
+  namespace: scanner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spiderfoot
+  strategy: {}
+  template:
+    metadata:
+      annotations: []
+      labels:
+        app: spiderfoot
+        name: spiderfoot
+    spec:
+      containers:
+        - image: spiderfoot
+          name: spiderfoot
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5001
+          resources: {}
+          volumeMounts:
+            - mountPath: "/var/lib/spiderfoot"
+              name: spiderfoot
+      volumes:
+        - name: spiderfoot
+          persistentVolumeClaim:
+            claimName: spiderfoot-pvc
+      restartPolicy: Always
